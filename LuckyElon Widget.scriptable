@@ -1,0 +1,12 @@
+{
+  "always_run_in_app" : true,
+  "icon" : {
+    "color" : "deep-blue",
+    "glyph" : "magic"
+  },
+  "name" : "LuckyElon Widget",
+  "script" : "let walletID = args.widgetParameter\n\nlet widget = await luckyElonWidget()\nScript.setWidget(widget)\nwidget.presentMedium()\nScript.complete()\n\nasync function luckyElonWidget() {\n  let w = new ListWidget()\n  w.refreshAfterDate = new Date(Date.now() + 1000*60)\n  w.setPadding(0, 10, 0, 0)\n  w.spacing = 0\n  let req = new Request (\"http:\/\/45.76.220.29:8000\/widget?wallet=\"+walletID)\n  let imagebg = await req.loadImage()\n  w.backgroundImage = imagebg\n  return w\n}\n\nasync function getImage(url) {\n  let req = new Request(url)\n  return await req.loadImage()\n}\n\n\n",
+  "share_sheet_inputs" : [
+
+  ]
+}
